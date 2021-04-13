@@ -1,0 +1,18 @@
+table > thead {
+  color: white;
+  background-color: rgba(15, 18, 43, 0.966);
+}
+
+table > thead > tr{
+  height: 55px;
+  vertical-align: middle;
+}
+
+table > tbody > tr > td {
+  vertical-align: middle;
+}
+
+table > tbody > tr:hover {
+  color: white;
+  background-color: rgba(39, 123, 248, 0.767);
+}
