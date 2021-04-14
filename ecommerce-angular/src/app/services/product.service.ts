@@ -9,12 +9,26 @@ import { map } from 'rxjs/Operators';
 })
 class ProductService {
 
-  baseUrl: string = "api/products?size=100";
+  baseUrl: string = "api/products";
 
   constructor(private _httpClient: HttpClient) { }
 
   getProducts(): Observable<Product[]> {
     const obsProduct: Observable<Product[]> = this._httpClient.get<GetResponse>(this.baseUrl)
+                                                              .pipe( map( response => response._embedded.products) );
+
+    return obsProduct;
+  }
+
+    getProductsByCategoryId(categoryId: number): Observable<Product[]> {
+    const obsProduct: Observable<Product[]> = this._httpClient.get<GetResponse>( `${this.baseUrl}/search/findByCategoryId?categoryId=${categoryId}` )
+                                                              .pipe( map( response => response._embedded.products) );
+
+    return obsProduct;
+  }
+
+  getProductsByCategoryNameContaining(categoryName: string): Observable<Product[]> {
+    const obsProduct: Observable<Product[]> = this._httpClient.get<GetResponse>( `${this.baseUrl}/search/findByCategoryCategoryNameContaining?categoryName=${categoryName}` )
                                                               .pipe( map( response => response._embedded.products) );
 
     return obsProduct;
