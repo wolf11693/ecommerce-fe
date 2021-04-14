@@ -16,3 +16,7 @@ table > tbody > tr:hover {
   color: white;
   background-color: rgba(39, 123, 248, 0.767);
 }
+
+img {
+  height: 120px;
+}
